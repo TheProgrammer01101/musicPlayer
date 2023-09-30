@@ -67,6 +67,7 @@ body {
 @media screen and (max-width: 768px) {
   .player {
     display: block;
+    height: 100%;
   }
 }
 .player-header {
@@ -103,6 +104,8 @@ body {
   height: 100%;
   overflow: scroll;
   overflow-x: hidden;
+  user-select: none;
+  -webkit-user-select: none;
 }
 .playlist-song {
   display: flex;
@@ -113,11 +116,12 @@ body {
   background-color: rgba(0, 0, 0, 0.3);
 }
 .playlist-song-active {
+  background-color: rgba(0, 0, 0, 0.3);
   color: var(--light-green);
 }
-/* .playlist-song-active div {
+.playlist-song-active div {
   color: inherit;
-} */
+}
 .play-pause {
   color: var(--main-font-color);
   margin-right: 20px;
