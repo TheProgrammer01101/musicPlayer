@@ -21,19 +21,22 @@ const TrackBar = (()=> {
   }
 
   const listeners = () => {
-    trackBarElement.addEventListener('click', (e)=> {
-      const fullPixel = trackBarElement.offsetWidth;
-      const currentClickedPixel = e.offsetX;
-      const clickedPercentage = getPercentage(currentClickedPixel, fullPixel);
-      const getPercentToSecond = (clickedPercentage)=> {
-        return clickedPercentage * Playlist.currentSong.duration / 100;
-      }
-      Playlist.currentSong.currentTime = getPercentToSecond(clickedPercentage);
-    });
+    trackBarElement.addEventListener('mousedown', trackSeeking);
   }
 
   const getPercentage = (current, full)=> {
     return (current/full) * 100;
+  }
+
+  const getPercentToSecond = (percent)=> {
+    return percent * Playlist.currentSong.duration / 100;
+  }
+
+  const trackSeeking = (e)=> {
+    const fullPixel = trackBarElement.offsetWidth;
+    const clickedPixel = e.offsetX;
+    const clickedPercentage = getPercentage(clickedPixel, fullPixel);
+    Playlist.currentSong.currentTime = getPercentToSecond(clickedPercentage);
   }
 
   const setState = obj => {

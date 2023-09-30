@@ -33,17 +33,18 @@ const Playlist = (() => {
   }
 
   const play = clickedIndex => {
-    if(currentlyPlayingIndex == clickedIndex)
-      toggleAudioPlayPause();
-    else {
-      currentlyPlayingIndex = clickedIndex;
-      updateAudioSrc();
-      toggleAudioPlayPause();
-    }
-    PlayInfo.setState({
-      songsLength: songs.length,
-      isPaused: currentSong.paused
-    })
+  if(currentlyPlayingIndex == clickedIndex)
+    toggleAudioPlayPause();
+  else {
+    currentlyPlayingIndex = clickedIndex;
+    updateAudioSrc();
+    toggleAudioPlayPause();
+  }
+  PlayInfo.setState({
+    songsLength: songs.length,
+    isPaused: currentSong.paused
+  })
+  render();
   }
 
   const playNext = ()=> {
@@ -55,22 +56,21 @@ const Playlist = (() => {
     }
   }
 
+  const getIndexToPlay = event=> {
+    if(event.target.matches('i')) {
+      const iconIndex = event.target.dataset.index;
+      play(iconIndex);
+    }
+  }
+
   const listeners = ()=> {
-    playlistElement.addEventListener('click', event => {
-      if(event.target.matches('i')) {
-        const indexOfIcon = event.target.dataset.index;
-        play(indexOfIcon);
-        render();
-      }
-    })
+    playlistElement.addEventListener('click', getIndexToPlay);
 
     currentSong.addEventListener('timeupdate', ()=> {
       TrackBar.setState(currentSong);
     })
 
-    currentSong.addEventListener('ended', ()=> {
-      playNext();
-    })
+    currentSong.addEventListener('ended', playNext);
   }
 
   const render = () => {
