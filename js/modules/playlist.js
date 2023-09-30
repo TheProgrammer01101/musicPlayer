@@ -20,7 +20,7 @@ const Playlist = (() => {
   }
 
   const flip = ()=> {
-    togglePlayPause();
+    toggleAudioPlayPause();
     render();
   }
 
@@ -28,17 +28,17 @@ const Playlist = (() => {
     currentSong.src = songs[currentlyPlayingIndex].url;
   }
 
-  const togglePlayPause = () => {
+  const toggleAudioPlayPause = () => {
     return currentSong.paused ? currentSong.play() : currentSong.pause();
   }
 
   const play = clickedIndex => {
     if(currentlyPlayingIndex == clickedIndex)
-      togglePlayPause();
+      toggleAudioPlayPause();
     else {
       currentlyPlayingIndex = clickedIndex;
       updateAudioSrc();
-      togglePlayPause();
+      toggleAudioPlayPause();
     }
     PlayInfo.setState({
       songsLength: songs.length,
@@ -50,7 +50,7 @@ const Playlist = (() => {
     if(songs[currentlyPlayingIndex + 1]) {
       currentlyPlayingIndex++;
       updateAudioSrc();
-      togglePlayPause();
+      toggleAudioPlayPause();
       render();
     }
   }
