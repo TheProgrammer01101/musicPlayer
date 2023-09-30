@@ -53,15 +53,18 @@ body {
   transform: .1s all ease;
 }
 .track-bar-fill {
-  height: 6px;
+  height: 15px;
   width: 0%;
   background-color: var(--light-green);
 }
 
 /* player styles */
 .player {
+  padding-top: 2rem;
   display: flex;
   height: 100vh;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
 @media screen and (max-width: 768px) {
