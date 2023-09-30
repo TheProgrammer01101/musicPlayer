@@ -1,3 +1,5 @@
+import Playlist from "./playlist.js";
+
 const PlayInfo = (()=> {
   const state = {
     songsLength: 0,
@@ -10,6 +12,15 @@ const PlayInfo = (()=> {
 
   const init = ()=> {
     render();
+    listeners();
+  }
+
+  const listeners = () => {
+    playerTriggerElement.addEventListener('click', ()=> {
+      state.isPaused = state.isPaused ? false : true;
+      render();
+      Playlist.flip();
+    })
   }
 
   const setState = obj => {
