@@ -50,12 +50,12 @@ body {
   left: 0;
   width: 100%;
   background-color: #000;
-  transform: .1s all ease;
 }
 .track-bar-fill {
-  height: 15px;
+  height: 1rem;
   width: 0%;
   background-color: var(--light-green);
+  transition: width 0.1s linear;
 }
 
 /* player styles */
