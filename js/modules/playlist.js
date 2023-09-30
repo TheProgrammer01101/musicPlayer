@@ -102,7 +102,8 @@ const Playlist = (() => {
   }
   return {
     init,
-    flip
+    flip,
+    currentSong
   }
 })();
 
